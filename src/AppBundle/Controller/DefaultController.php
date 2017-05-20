@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Message;
 use AppBundle\Entity\ViewVariable;
+use AppBundle\Repository\SocialMediaRepository;
 use AppBundle\Repository\WorkExperienceRepository;
 use AppBundle\Repository\EducationRepository;
 use AppBundle\Repository\SkillRepository;
@@ -25,27 +26,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $vars = [];
-
-        // fetch global view variables
-        $text = $this->getDoctrine()->getRepository('AppBundle:ViewVariable')->findAll();
-
-        /* @var $obj ViewVariable */
-        foreach ($text as $obj) {
-            $vars[$obj->getName()] = $obj->getValue();
-        }
-
-        /** @var WorkExperienceRepository $repository */
-        $repository = $this->getDoctrine()->getRepository('AppBundle:WorkExperience');
-        $vars['work_experience_list'] = $repository->findAllOrderedByPriority();
-
-        /** @var EducationRepository $repository */
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Education');
-        $vars['education_list'] = $repository->findAllOrderedByPriority();
-
-        /** @var SkillRepository $repository */
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Skill');
-        $vars['skill_list'] = $repository->findAllOrderedByRand();
+        $vars = $this->getViewVariables();
 
         // contact form
         $message = new Message();
@@ -62,6 +43,40 @@ class DefaultController extends Controller
         $vars['form']= $form->createView();
 
         return $this->render('default/index.html.twig', $vars);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getViewVariables()
+    {
+        $vars = [];
+
+        // fetch global view variables
+        $text = $this->getDoctrine()->getRepository('AppBundle:ViewVariable')->findAll();
+
+        /* @var $obj ViewVariable */
+        foreach ($text as $obj) {
+            $vars[$obj->getName()] = $obj->getValue();
+        }
+
+        /** @var SocialMediaRepository $repository */
+        $repository = $this->getDoctrine()->getRepository('AppBundle:SocialMedia');
+        $vars['social_media_list'] = $repository->findAllOrderedByPriority();
+
+        /** @var WorkExperienceRepository $repository */
+        $repository = $this->getDoctrine()->getRepository('AppBundle:WorkExperience');
+        $vars['work_experience_list'] = $repository->findAllOrderedByPriority();
+
+        /** @var EducationRepository $repository */
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Education');
+        $vars['education_list'] = $repository->findAllOrderedByPriority();
+
+        /** @var SkillRepository $repository */
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Skill');
+        $vars['skill_list'] = $repository->findAllOrderedByRand();
+
+        return $vars;
     }
 
     /**
