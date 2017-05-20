@@ -66,6 +66,7 @@ body {
     border: 5px solid #FFF;
     top: -80px;
     margin-left: -80px;
+    text-decoration: none;
 }
 
 .main-header .intro .name {
