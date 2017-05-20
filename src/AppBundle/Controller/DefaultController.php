@@ -9,6 +9,8 @@ use AppBundle\Repository\EducationRepository;
 use AppBundle\Repository\SkillRepository;
 use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Swift_Message;
+use Symfony\Component\Form\Form;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -45,26 +47,56 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Skill');
         $vars['skill_list'] = $repository->findAllOrderedByRand();
 
+        // contact form
         $message = new Message();
-
         $form = $this->createForm(ContactType::class, $message);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $message = $form->getData();
-
-            dump($message);die;
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            // $em = $this->getDoctrine()->getManager();
-            // $em->persist($task);
-            // $em->flush();
-
-            return $this->redirectToRoute('task_success');
+        // validate form
+        if ($this->validateForm($form)) {
+            // redirect on success!
+            return $this->redirect($this->generateUrl('homepage', ['success' => true]));
         }
 
-        $vars['form'] = $form->createView();
+        // add form to view
+        $vars['form']= $form->createView();
 
         return $this->render('default/index.html.twig', $vars);
+    }
+
+    /**
+     * @param Form $form
+     * @return bool
+     */
+    protected function validateForm(Form $form)
+    {
+        $isValid = false;
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data    = $form->getData();
+            $isValid = 0 < $this->sendMessage($data) ? true : false;
+        }
+
+        return $isValid;
+    }
+
+    /**
+     * @param Message $message
+     * @return mixed
+     */
+    protected function sendMessage(Message $message)
+    {
+        $vars = [
+            'email'   => $message->getEmail(),
+            'content' => $message->getContent()
+        ];
+
+        $message = Swift_Message::newInstance()
+                 ->setSubject('Contact')
+                 ->setFrom($this->container->getParameter('email_from'))
+                 ->setTo($this->container->getParameter('email_to'))
+                 ->setBody($this->renderView('mail/contact.html.twig', $vars), 'text/html');
+
+        return $this->get('mailer')->send($message);
     }
 }

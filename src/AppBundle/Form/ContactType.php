@@ -20,7 +20,7 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('email')
-                ->add('message', TextareaType::class, ['attr' => ['class' => 'input-lg']])
+                ->add('content', TextareaType::class, ['attr' => ['class' => 'input-lg']])
                 ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn-default btn-lg']]);
     }
 }

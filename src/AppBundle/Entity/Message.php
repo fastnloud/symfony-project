@@ -20,7 +20,7 @@ class Message
     /**
      * @Assert\NotBlank()
      */
-    private $message;
+    private $content;
 
     /**
      * @param OptionsResolver $resolver
@@ -30,6 +30,22 @@ class Message
         $resolver->setDefaults(array(
             'data_class' => Message::class,
         ));
+    }
+
+    /**
+     * @param mixed $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContent()
+    {
+        return $this->content;
     }
 
     /**
@@ -46,21 +62,5 @@ class Message
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * @param mixed $message
-     */
-    public function setMessage($message)
-    {
-        $this->message = $message;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMessage()
-    {
-        return $this->message;
     }
 }
