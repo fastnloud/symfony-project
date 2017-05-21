@@ -16,7 +16,7 @@ class EducationRepository extends EntityRepository
     public function findAllOrderedByPriority()
     {
         return $this->getEntityManager()
-                    ->createQuery('SELECT e FROM AppBundle:Education e ORDER BY e.priority ASC')
+                    ->createQuery('SELECT e FROM AppBundle:Education e ORDER BY e.priority DESC')
                     ->getResult();
     }
 }
