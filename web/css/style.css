@@ -17,7 +17,7 @@ body {
 
 .body {
     background: #F5F5F5;
-    padding-bottom: 30px;
+    padding-bottom: 60px;
 }
 
 a,
@@ -228,8 +228,14 @@ a:focus {
 }
 
 .footer {
-    height: 10px;
+    padding: 5px 0;
+    height: 30px;
     background: #040502;
+    color: #fff;
+}
+
+.footer p {
+    margin: 0;
 }
 
 @media (min-width: 768px) {
