@@ -172,7 +172,7 @@
 
                                 <div class="form-wrapper" id="form">
 
-                                    {% if (app.request.get('success')) %}
+                                    {% if (app.request.get('success') and form.vars.valid) %}
 
                                         <div class="alert alert-success">{{ form_success_message|raw }}</div>
 
