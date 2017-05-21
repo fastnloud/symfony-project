@@ -115,17 +115,27 @@
 
                     <h2 class="text-center section-header">{{ nav_item_title_2 }}</h2>
 
-                    <section class="section clearfix">
+                    <section class="clearfix">
 
-                        <div class="grid row">
+                        <div class="grid">
+
                             {% for education in education_list %}
+                                {% if loop.index is odd %}
+                                    <div class="row">
+                                {% endif %}
+
                                 <div class="col-md-6">
-                                    <div class="col-inner">
+                                    <div class="col-inner section clearfix">
                                         <div class="title">{{ education.title }}</div>
                                         <div class="content">{{ education.description|raw }}</div>
                                     </div>
                                 </div>
+
+                                {% if loop.index is even  or loop.last %}
+                                    </div>
+                                {% endif %}
                             {% endfor %}
+
                         </div>
 
                     </section>
