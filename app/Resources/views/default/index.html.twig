@@ -16,7 +16,7 @@
                 <div class="container text-center">
 
                     <a href="{{ url('homepage') }}">
-                        <img class="profile-image img-circle" src="/img/profile-image.jpg" alt="{{ name }}">
+                        <img class="profile-image img-circle" src="/img/profile-image.jpg" alt="{{ name|e('html_attr') }}">
                     </a>
 
                     <h1 class="name">{{ name }}</h1>
@@ -39,8 +39,8 @@
 
                         {% for social_media in social_media_list %}
                             <li>
-                                <a target="_blank" href="{{ social_media.href }}" title="{{ social_media.label }}">
-                                    <i class="fa fa-{{ social_media.icon }}" aria-hidden="true"></i>
+                                <a target="_blank" href="{{ social_media.href }}" title="{{ social_media.label|e('html_attr') }}">
+                                    <i class="fa fa-{{ social_media.icon|e('html_attr') }}" aria-hidden="true"></i>
                                 </a>
                             </li>
                         {% endfor %}
@@ -56,10 +56,10 @@
                 <div class="container text-center">
 
                     <ul class="items list-inline">
-                        <li class="item"><a href="{{ url('homepage') }}#{{ nav_item_id_1 }}">{{ nav_item_title_1 }}</a></li>
-                        <li class="item"><a href="{{ url('homepage') }}#{{ nav_item_id_2 }}">{{ nav_item_title_2 }}</a></li>
-                        <li class="item"><a href="{{ url('homepage') }}#{{ nav_item_id_3 }}">{{ nav_item_title_3 }}</a></li>
-                        <li class="item"><a href="{{ url('homepage') }}#{{ nav_item_id_4 }}">{{ nav_item_title_4 }}</a></li>
+                        <li class="item"><a href="{{ url('homepage') }}#{{ nav_item_id_1|e('html_attr') }}">{{ nav_item_title_1 }}</a></li>
+                        <li class="item"><a href="{{ url('homepage') }}#{{ nav_item_id_2|e('html_attr') }}">{{ nav_item_title_2 }}</a></li>
+                        <li class="item"><a href="{{ url('homepage') }}#{{ nav_item_id_3|e('html_attr') }}">{{ nav_item_title_3 }}</a></li>
+                        <li class="item"><a href="{{ url('homepage') }}#{{ nav_item_id_4|e('html_attr') }}">{{ nav_item_title_4 }}</a></li>
                     </ul>
 
                 </div>
@@ -71,7 +71,7 @@
 
             <div class="container">
 
-                <div class="section-wrapper" id="{{ nav_item_id_1 }}">
+                <div class="section-wrapper" id="{{ nav_item_id_1|e('html_attr') }}">
 
                     <h2 class="text-center section-header">{{ nav_item_title_1 }}</h2>
 
@@ -111,7 +111,7 @@
 
                 </div>
 
-                <div class="section-wrapper" id="{{ nav_item_id_2 }}">
+                <div class="section-wrapper" id="{{ nav_item_id_2|e('html_attr') }}">
 
                     <h2 class="text-center section-header">{{ nav_item_title_2 }}</h2>
 
@@ -142,7 +142,7 @@
 
                 </div>
 
-                <div class="section-wrapper" id="{{ nav_item_id_3 }}">
+                <div class="section-wrapper" id="{{ nav_item_id_3|e('html_attr') }}">
                     <h2 class="text-center section-header">{{ nav_item_title_3 }}</h2>
 
                     <div class="section clearfix">
@@ -157,7 +157,7 @@
 
                 </div>
 
-                <div class="section-wrapper" id="{{ nav_item_id_4 }}">
+                <div class="section-wrapper" id="{{ nav_item_id_4|e('html_attr') }}">
 
                     <h2 class="text-center section-header">{{ nav_item_title_4 }}</h2>
 
@@ -166,7 +166,7 @@
                         <div class="contact row">
 
                             <div class="col-md-4 text-center">
-                                <img class="profile-image img-circle" src="/img/profile-image.jpg" alt="{{ name }}">
+                                <img class="profile-image img-circle" src="/img/profile-image.jpg" alt="{{ name|e('html_attr') }}">
                             </div>
 
                             <div class="col-md-8">
