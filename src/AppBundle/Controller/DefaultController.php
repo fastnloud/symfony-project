@@ -39,8 +39,8 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('homepage', ['success' => true]));
         }
 
-        // add form to view
-        $vars['form']= $form->createView();
+        $vars['form']           = $form->createView();
+        $vars['ga_tracking_id'] = $this->container->getParameter('ga_tracking_id');
 
         return $this->render('default/index.html.twig', $vars);
     }

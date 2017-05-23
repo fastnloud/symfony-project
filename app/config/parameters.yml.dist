@@ -21,3 +21,6 @@ parameters:
     # Email from/to params used in contact form
     email_from: noreply@example.com
     email_to: youremail@example.com
+
+    # GA tracking ID
+    ga_tracking_id: false
