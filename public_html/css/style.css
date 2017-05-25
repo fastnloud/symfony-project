@@ -195,6 +195,7 @@ a:focus {
 }
 
 /* grid */
+.grid .col + .col,
 .grid .row + .row {
     margin-top: 30px;
 }
@@ -239,6 +240,10 @@ a:focus {
 }
 
 @media (min-width: 768px) {
+    .grid .col + .col {
+        margin-top: 0;
+    }
+
     .timeline {
         margin-left: 300px;
     }
