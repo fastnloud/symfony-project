@@ -13,5 +13,5 @@
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 /vendor/
-/web/bundles/
-/web/img/profile-image.jpg
+/public_html/bundles/
+/public_html/img/profile-image.jpg
