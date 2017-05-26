@@ -115,7 +115,7 @@ class DefaultController extends Controller
         ];
 
         $message = Swift_Message::newInstance()
-                 ->setSubject('Contact')
+                 ->setSubject($this->container->getParameter('email_subject'))
                  ->setFrom($this->container->getParameter('email_from'))
                  ->setTo($this->container->getParameter('email_to'))
                  ->setBody($this->renderView('mail/contact.html.twig', $vars), 'text/html');
