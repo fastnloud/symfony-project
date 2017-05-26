@@ -31,7 +31,7 @@ class DefaultController extends Controller
 
         // contact form
         $message = new Message();
-        $form = $this->createForm(ContactType::class, $message);
+        $form = $this->createForm(ContactType::class, $message, ['action' => $this->generateUrl('homepage') . '#form']);
         $form->handleRequest($request);
 
         // validate form
@@ -83,6 +83,7 @@ class DefaultController extends Controller
 
     /**
      * @param Form $form
+     * @param Request $request
      * @return bool
      */
     protected function validateForm(Form $form, Request $request)
