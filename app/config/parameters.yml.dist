@@ -24,3 +24,12 @@ parameters:
 
     # GA tracking ID
     ga_tracking_id: false
+
+    # reCAPTCHA keys
+    recaptcha_site_key: publickey
+    recaptcha_secret_key: privatekey
+
+#swiftmailer:
+#    encryption: ssl
+#    auth_mode: login
+#    port: 465

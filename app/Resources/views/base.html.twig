@@ -25,6 +25,8 @@
             </script>
         {% endif %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="https://www.google.com/recaptcha/api.js"></script>
+        {% endblock %}
     </body>
 </html>

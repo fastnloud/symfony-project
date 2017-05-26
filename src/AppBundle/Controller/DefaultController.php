@@ -9,6 +9,7 @@ use AppBundle\Repository\WorkExperienceRepository;
 use AppBundle\Repository\EducationRepository;
 use AppBundle\Repository\SkillRepository;
 use AppBundle\Form\ContactType;
+use ReCaptcha\ReCaptcha;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Swift_Message;
 use Symfony\Component\Form\Form;
@@ -34,13 +35,14 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         // validate form
-        if ($this->validateForm($form)) {
+        if ($this->validateForm($form, $request)) {
             // redirect on success!
             return $this->redirect($this->generateUrl('homepage', ['success' => true]));
         }
 
-        $vars['form']           = $form->createView();
-        $vars['ga_tracking_id'] = $this->container->getParameter('ga_tracking_id');
+        $vars['form']               = $form->createView();
+        $vars['recaptcha_site_key'] = $this->container->getParameter('recaptcha_site_key');
+        $vars['ga_tracking_id']     = $this->container->getParameter('ga_tracking_id');
 
         return $this->render('default/index.html.twig', $vars);
     }
@@ -83,11 +85,17 @@ class DefaultController extends Controller
      * @param Form $form
      * @return bool
      */
-    protected function validateForm(Form $form)
+    protected function validateForm(Form $form, Request $request)
     {
-        $isValid = false;
+        $isValid            = false;
+        $gRecaptchaResponse = $request->get('g-recaptcha-response');
+        $remoteIp           = $request->getClientIp();
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        // recaptcha validation
+        $recaptcha = new ReCaptcha($this->container->getParameter('recaptcha_secret_key'));
+        $resp      = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
+
+        if ($form->isSubmitted() && $form->isValid() && $resp->isSuccess()) {
             $data    = $form->getData();
             $isValid = 0 < $this->sendMessage($data) ? true : false;
         }
