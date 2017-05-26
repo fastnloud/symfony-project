@@ -20,6 +20,10 @@ DirectoryIndex app.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Custom rule; domain redirect.
+    RewriteCond %{HTTP_HOST} !^jaap\.sh$ [NC]
+    RewriteRule ^(.*)$ %{REQUEST_SCHEME}://jaap.sh/? [R=301,L]
+
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
     # project in a subdirectory, the base path will be prepended to allow proper
