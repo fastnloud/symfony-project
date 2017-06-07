@@ -22,7 +22,12 @@ DirectoryIndex app.php
 
     # Custom rule; domain redirect.
     RewriteCond %{HTTP_HOST} !^jaap\.sh$ [NC]
-    RewriteRule ^(.*)$ %{REQUEST_SCHEME}://jaap.sh/? [R=301,L]
+    RewriteRule ^(.*)$ https://jaap.sh/? [R=301,L]
+
+    # Redirect to https.
+    RewriteCond %{HTTP_HOST} ^jaap\.sh$ [NC]
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://jaap.sh/? [R=301,L]
 
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
