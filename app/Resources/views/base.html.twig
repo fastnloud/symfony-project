@@ -7,13 +7,13 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-            <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/style.css?v=2') }}" rel="stylesheet">
         {% endblock %}
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
             <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-            <script src="{{ asset('js/main.js') }}"></script>
+            <script src="{{ asset('js/main.js?v=2') }}"></script>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     </head>
@@ -29,7 +29,6 @@
                 ga('set', 'anonymizeIp', true);
                 ga('set', 'forceSSL', true);
                 ga('send', 'pageview');
-
             </script>
         {% endif %}
         {% block body %}{% endblock %}
