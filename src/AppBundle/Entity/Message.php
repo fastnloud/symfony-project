@@ -12,6 +12,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Message
 {
     /**
+     * @var mixed
+     */
+    private $subject;
+
+    /**
      * @Assert\NotBlank()
      * @Assert\Email()
      */
@@ -30,6 +35,22 @@ class Message
         $resolver->setDefaults(array(
             'data_class' => Message::class,
         ));
+    }
+
+    /**
+     * @param mixed $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubject()
+    {
+        return $this->subject;
     }
 
     /**

@@ -287,6 +287,16 @@ figure {
     margin-top: 1rem;
 }
 
+.contact form .subject {
+    overflow: hidden;
+    position: relative;
+}
+
+.contact form .subject input {
+    position: absolute;
+    left: 100%;
+}
+
 .footer {
     padding: 0.3rem 0;
     height: 2rem;

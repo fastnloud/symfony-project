@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Message;
 use AppBundle\Form\ContactType;
 use AppBundle\Service\SanityService;
-use ReCaptcha\ReCaptcha;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Swift_Message;
 use Symfony\Component\Form\Form;
@@ -42,9 +41,8 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('homepage', ['success' => true]));
         }
 
-        $vars['form']               = $form->createView();
-        $vars['recaptcha_site_key'] = $this->container->getParameter('recaptcha_site_key');
-        $vars['ga_tracking_id']     = $this->container->getParameter('ga_tracking_id');
+        $vars['form']           = $form->createView();
+        $vars['ga_tracking_id'] = $this->container->getParameter('ga_tracking_id');
 
         return $this->render('default/index.html.twig', $vars);
     }
@@ -56,17 +54,16 @@ class DefaultController extends Controller
      */
     protected function validateForm(Form $form, Request $request)
     {
-        $isValid            = false;
-        $gRecaptchaResponse = $request->get('g-recaptcha-response');
-        $remoteIp           = $request->getClientIp();
+        $isValid = false;
 
-        // recaptcha validation
-        $recaptcha = new ReCaptcha($this->container->getParameter('recaptcha_secret_key'));
-        $resp      = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
 
-        if ($form->isSubmitted() && $form->isValid() && $resp->isSuccess()) {
-            $data    = $form->getData();
-            $isValid = 0 < $this->sendMessage($data) ? true : false;
+            if (empty($data->getSubject())) {
+                $this->sendMessage($data);
+            }
+
+            $isValid = true;
         }
 
         return $isValid;
