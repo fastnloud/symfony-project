@@ -109,23 +109,17 @@
 
                     <div class="clearfix">
 
-                        <div class="grid">
+                        <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "horizontalOrder": true}'>
+                            <div class="grid-sizer"></div>
+                            <div class="gutter-sizer"></div>
 
                             {% for milestone in Milestone %}
-                                {% if loop.index is odd %}
-                                    <div class="row">
-                                {% endif %}
-
-                                <div class="col col-sm-6">
-                                    <div class="col-inner section clearfix">
+                                <div class="grid-item">
+                                    <div class="section clearfix">
                                         <div class="title">{{ milestone.title }}</div>
                                         <div class="content">{{ milestone.description|raw }}</div>
                                     </div>
                                 </div>
-
-                                {% if loop.index is even  or loop.last %}
-                                    </div>
-                                {% endif %}
                             {% endfor %}
 
                         </div>
