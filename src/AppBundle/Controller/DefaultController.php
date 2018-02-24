@@ -27,6 +27,10 @@ class DefaultController extends Controller
         $sanityService = $this->container->get('sanity');
         $vars = $sanityService->fetchAll();
 
+        if (isset($vars['Tag'])) {
+            shuffle($vars['Tag']); // shuffle tags
+        }
+
         // contact form
         $message = new Message();
         $form = $this->createForm(ContactType::class, $message, ['action' => $this->generateUrl('homepage') . '#form']);
