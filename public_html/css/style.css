@@ -254,7 +254,13 @@ figure {
 }
 
 .grid-item .section {
+    padding: 1.5rem 0 0 0;
     margin-bottom: 2rem;
+}
+
+.grid-item .section .title,
+.grid-item .section .content {
+    padding: 0 1.5rem;
 }
 
 .grid-item:last-child .section {
@@ -266,14 +272,35 @@ figure {
     width: 100%;
 }
 
-/* tags */
-.badges .badge {
+/* skills */
+.skills .badge {
     display: inline-block;
     margin: 0.3rem;
     padding: 0.6rem;
     font-size: 0.9rem;
     background: #b63732;
     color: #fff;
+}
+
+/* related tags */
+.related-tags {
+    min-height: 1.5rem;
+}
+
+.related-tags .badges {
+    background: #F5F5F5;
+    padding: 0.25rem;
+}
+
+.related-tags .badges .badge:first-child {
+    background: transparent;
+}
+
+.related-tags .badges .badge {
+    margin: 0.3rem 0.1rem;
+    padding: 0.3rem;
+    font-size: 0.6rem;
+    background: #d4d4d4;
 }
 
 /* contact */

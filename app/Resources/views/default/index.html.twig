@@ -118,6 +118,17 @@
                                     <div class="section clearfix">
                                         <div class="title">{{ milestone.title }}</div>
                                         <div class="content">{{ milestone.description|raw }}</div>
+
+                                        <div class="related-tags">
+                                            {% if milestone.tags %}
+                                                <div class="badges">
+                                                    <span class="badge">related:</span>
+                                                    {% for tag in milestone.tags %}
+                                                        <span class="badge">{{ tag }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -133,10 +144,12 @@
 
                     <div class="section clearfix">
 
-                        <div class="badges text-center">
-                            {% for tag in Tag %}
-                                <span class="badge">{{ tag.label }}</span>
-                            {% endfor %}
+                        <div class="skills">
+                            <div class="badges text-center">
+                                {% for tag in Tag %}
+                                    <span class="badge">{{ tag.label }}</span>
+                                {% endfor %}
+                            </div>
                         </div>
 
                     </div>
