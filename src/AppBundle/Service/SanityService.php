@@ -54,9 +54,9 @@ class SanityService
         $result = $this->client->fetch(<<<QUERY
 {
     "author": *[_type == 'author']{_id, _type, _createdAt, _updatedAt, name, title, bio, 'image': image.asset->url},
-    "link": *[_type == 'link']{_id, _type, _createdAt, _updatedAt, label, icon, href, priority},
-    "timeline": *[_type == 'timeline']{_id, _type, _createdAt, _updatedAt, title, subtitle, location, description, startDate, endDate},
-    "milestone": *[_type == 'milestone']{_id, _type, _createdAt, _updatedAt, title, description, date, 'tags': tags[]->label},
+    "link": *[_type == 'link']{_id, _type, _createdAt, _updatedAt, label, icon, href, priority} | order(priority asc),
+    "timeline": *[_type == 'timeline']{_id, _type, _createdAt, _updatedAt, title, subtitle, location, description, startDate, endDate} | order(startDate desc),
+    "milestone": *[_type == 'milestone']{_id, _type, _createdAt, _updatedAt, title, description, date, 'tags': tags[]->label} | order(date desc),
     "tag": *[_type == 'tag']{_id, _type, _createdAt, _updatedAt, label},
     "placeholder": *[_type == 'placeholder']{_id, _type, _createdAt, _updatedAt, name, value}
 }
