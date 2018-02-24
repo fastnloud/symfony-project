@@ -22,7 +22,8 @@ body {
 
 a,
 a:hover,
-a:focus {
+a:focus,
+code {
     color: #b63732;
 }
 
