@@ -42,10 +42,10 @@
             </ul>
 
             <ul class="nav justify-content-center">
-                <li class="nav-item"><a href="{{ url('homepage') }}#{{ Placeholder.block_item_1.value|e('html_attr') }}">{{ Placeholder.block_item_1.value }}</a></li>
-                <li class="nav-item"><a href="{{ url('homepage') }}#{{ Placeholder.block_item_2.value|e('html_attr') }}">{{ Placeholder.block_item_2.value }}</a></li>
-                <li class="nav-item"><a href="{{ url('homepage') }}#{{ Placeholder.block_item_3.value|e('html_attr') }}">{{ Placeholder.block_item_3.value }}</a></li>
-                <li class="nav-item"><a href="{{ url('homepage') }}#{{ Placeholder.block_item_4.value|e('html_attr') }}">{{ Placeholder.block_item_4.value }}</a></li>
+                <li class="nav-item"><a href="{{ url('homepage') }}#{{ Placeholder.block_item_1.value|replace(' ', '_')|e('html_attr') }}">{{ Placeholder.block_item_1.value }}</a></li>
+                <li class="nav-item"><a href="{{ url('homepage') }}#{{ Placeholder.block_item_2.value|replace(' ', '_')|e('html_attr') }}">{{ Placeholder.block_item_2.value }}</a></li>
+                <li class="nav-item"><a href="{{ url('homepage') }}#{{ Placeholder.block_item_3.value|replace(' ', '_')|e('html_attr') }}">{{ Placeholder.block_item_3.value }}</a></li>
+                <li class="nav-item"><a href="{{ url('homepage') }}#{{ Placeholder.block_item_4.value|replace(' ', '_')|e('html_attr') }}">{{ Placeholder.block_item_4.value }}</a></li>
             </ul>
 
         </header>
@@ -54,7 +54,7 @@
 
             <div class="container">
 
-                <div class="section-wrapper" id="{{ Placeholder.block_item_1.value|e('html_attr') }}">
+                <div class="section-wrapper" id="{{ Placeholder.block_item_1.value|replace(' ', '_')|e('html_attr') }}">
 
                     <h2 class="text-center section-header">{{ Placeholder.block_item_1.value }}</h2>
 
@@ -103,13 +103,13 @@
 
                 </div>
 
-                <div class="section-wrapper" id="{{ Placeholder.block_item_2.value|e('html_attr') }}">
+                <div class="section-wrapper" id="{{ Placeholder.block_item_2.value|replace(' ', '_')|e('html_attr') }}">
 
                     <h2 class="text-center section-header">{{ Placeholder.block_item_2.value }}</h2>
 
                     <div class="clearfix">
 
-                        <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "horizontalOrder": true}'>
+                        <div class="grid">
                             <div class="grid-sizer"></div>
                             <div class="gutter-sizer"></div>
 
@@ -139,7 +139,7 @@
 
                 </div>
 
-                <div class="section-wrapper" id="{{ Placeholder.block_item_3.value|e('html_attr') }}">
+                <div class="section-wrapper" id="{{ Placeholder.block_item_3.value|replace(' ', '_')|e('html_attr') }}">
                     <h2 class="text-center section-header">{{ Placeholder.block_item_3.value }}</h2>
 
                     <div class="section clearfix">
@@ -156,7 +156,7 @@
 
                 </div>
 
-                <div class="section-wrapper" id="{{ Placeholder.block_item_4.value|e('html_attr') }}">
+                <div class="section-wrapper" id="{{ Placeholder.block_item_4.value|replace(' ', '_')|e('html_attr') }}">
 
                     <h2 class="text-center section-header">{{ Placeholder.block_item_4.value }}</h2>
 
@@ -165,7 +165,7 @@
                         <div class="contact row">
 
                             <div class="col-md-4 text-center">
-                                <img class="profile-image img-circle" src="{{ Author.0.image }}" alt="{{ Author.0.name|e('html_attr') }}">
+                                <img class="profile-image" src="{{ Author.0.image }}" alt="{{ Author.0.name|e('html_attr') }}">
                             </div>
 
                             <div class="col-md-8">
