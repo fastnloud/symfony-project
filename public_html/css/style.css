@@ -54,6 +54,7 @@ ol li:before {
 
 figure {
     position: relative;
+    max-width: 100%;
     float: right;
     margin: 0.3rem;
 }
