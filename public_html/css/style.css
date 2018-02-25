@@ -53,6 +53,7 @@ ol li:before {
 }
 
 figure {
+    position: relative;
     float: right;
     margin: 0.3rem;
 }
