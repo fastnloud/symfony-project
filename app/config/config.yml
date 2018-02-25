@@ -43,6 +43,7 @@ twig:
         - 'bootstrap_3_layout.html.twig'
     globals:
         site_version: 2.1
+        ga_tracking_id: %ga_tracking_id%
 
 # Doctrine Configuration
 #doctrine:
